@@ -28,6 +28,8 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   late List<Product> products;
+  bool isLoading = true;
+  
   @override
   void initState() {
     super.initState();
@@ -40,6 +42,7 @@ class _MainPageState extends State<MainPage> {
     //print(response.body);
     setState(() {
       products = productFromJson(response.body);
+      isLoading = false;
     });
     return;
   }
@@ -51,7 +54,9 @@ class _MainPageState extends State<MainPage> {
         title: const Text('IT@WU Shop', style: TextStyle(color: Colors.white),),
         backgroundColor: Colors.blue,
       ),
-      body: ListView.builder(
+      body: isLoading
+          ? const Center(child: CircularProgressIndicator()) // Display loading indicator.
+          :ListView.builder(
         itemCount: products.length,
         itemBuilder: (context, index) {
           Product product = products[index];
