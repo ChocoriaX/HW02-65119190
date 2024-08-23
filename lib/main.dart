@@ -29,7 +29,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   late List<Product> products;
   bool isLoading = true;
-  
+
   @override
   void initState() {
     super.initState();
@@ -55,7 +55,7 @@ class _MainPageState extends State<MainPage> {
         backgroundColor: Colors.blue,
       ),
       body: isLoading
-          ? const Center(child: CircularProgressIndicator()) // Display loading indicator.
+          ? const Center(child: CircularProgressIndicator())
           :ListView.builder(
         itemCount: products.length,
         itemBuilder: (context, index) {
